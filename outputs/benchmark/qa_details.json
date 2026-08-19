@@ -1,0 +1,286 @@
+{
+  "lexical": [
+    {
+      "question_id": "T1",
+      "method": "lexical",
+      "answer": "Sinh viên thuộc **40% hộ gia đình có hoàn cảnh kinh tế khó khăn nhất chiếm chưa đến 10%** tổng số sinh viên nhập học tại các cơ sở giáo dục sau phổ thông. [PDF trang 18; trang in 4]",
+      "correct": true,
+      "citation_correct": true,
+      "abstained": false,
+      "error": null,
+      "prompt_tokens": 5017,
+      "completion_tokens": 103,
+      "latency_s": 17.75
+    },
+    {
+      "question_id": "T2",
+      "method": "lexical",
+      "answer": "Có **hơn 600 viện nghiên cứu công lập (GRI)** thuộc phạm vi quản lý của nhiều bộ, ngành. **[PDF trang 55; trang in 41]**",
+      "correct": true,
+      "citation_correct": true,
+      "abstained": false,
+      "error": null,
+      "prompt_tokens": 5442,
+      "completion_tokens": 43,
+      "latency_s": 5.73
+    },
+    {
+      "question_id": "T3",
+      "method": "lexical",
+      "answer": "Không đủ dữ liệu để xác định. Context chỉ nêu các nguồn có thể tăng thu ở cấp trường như **quyên tặng, nghiên cứu theo hợp đồng, dịch vụ tư vấn và giáo dục thường xuyên**, nhưng không cho biết nguồn nào lớn nhất theo khảo sát cấp trường [PDF trang 25; trang in None].",
+      "correct": false,
+      "citation_correct": false,
+      "abstained": true,
+      "error": null,
+      "prompt_tokens": 11606,
+      "completion_tokens": 164,
+      "latency_s": 37.87
+    },
+    {
+      "question_id": "B1",
+      "method": "lexical",
+      "answer": "Theo Bảng 3, hàng Việt Nam:\n\n| Bảng xếp hạng | Số trường trong top 1.000 |\n|---|---|\n| Webometrics | **0** |\n| QS | **2** |\n| Times Higher Education | **1** |\n\n**Tổng cộng: 3 trường** (0 + 2 + 1) [PDF trang 46; trang in 32].",
+      "correct": false,
+      "citation_correct": true,
+      "abstained": false,
+      "error": null,
+      "prompt_tokens": 5626,
+      "completion_tokens": 144,
+      "latency_s": 19.32
+    },
+    {
+      "question_id": "B2",
+      "method": "lexical",
+      "answer": "**Theo Bảng 3, Pháp có 32 trường trong top 1.000 của bảng xếp hạng QS.**\n\n[PDF trang 46; trang in 32]",
+      "correct": false,
+      "citation_correct": true,
+      "abstained": false,
+      "error": null,
+      "prompt_tokens": 10006,
+      "completion_tokens": 1229,
+      "latency_s": 17.7
+    },
+    {
+      "question_id": "B3",
+      "method": "lexical",
+      "answer": "Anh quốc có **92 trường** trong top 1.000 của bảng xếp hạng Times Higher Education. **[PDF trang 46; trang in 32]**",
+      "correct": true,
+      "citation_correct": true,
+      "abstained": false,
+      "error": null,
+      "prompt_tokens": 5735,
+      "completion_tokens": 40,
+      "latency_s": 26.84
+    },
+    {
+      "question_id": "B4",
+      "method": "lexical",
+      "answer": "Đức có **60 trường** trong top 1.000 của Webometrics. **[PDF trang 46; trang in 32]**",
+      "correct": true,
+      "citation_correct": true,
+      "abstained": false,
+      "error": null,
+      "prompt_tokens": 5781,
+      "completion_tokens": 35,
+      "latency_s": 15.14
+    },
+    {
+      "question_id": "B5",
+      "method": "lexical",
+      "answer": "Nhật Bản có **44 trường** trong top 1.000 của bảng xếp hạng QS. **[PDF trang 46; trang in 32]**",
+      "correct": true,
+      "citation_correct": true,
+      "abstained": false,
+      "error": null,
+      "prompt_tokens": 11769,
+      "completion_tokens": 40,
+      "latency_s": 8.28
+    },
+    {
+      "question_id": "B6",
+      "method": "lexical",
+      "answer": "Trung Quốc có **63 trường** trong top 1.000 của Times Higher Education. [PDF trang 46; trang in 32]",
+      "correct": true,
+      "citation_correct": true,
+      "abstained": false,
+      "error": null,
+      "prompt_tokens": 5730,
+      "completion_tokens": 34,
+      "latency_s": 6.69
+    }
+  ],
+  "v5_records": [
+    {
+      "question_id": "T1",
+      "method": "v5_records",
+      "answer": "Chưa đến **10%** tổng số sinh viên nhập học tại các cơ sở giáo dục sau phổ thông. [PDF trang 18; trang in 4]",
+      "correct": true,
+      "citation_correct": true,
+      "abstained": false,
+      "error": null,
+      "prompt_tokens": 4780,
+      "completion_tokens": 38,
+      "latency_s": 2.74
+    },
+    {
+      "question_id": "T2",
+      "method": "v5_records",
+      "answer": "Có **hơn 600 viện nghiên cứu công lập (GRI)** thuộc phạm vi quản lý của nhiều bộ, ngành. **[PDF trang 55; trang in None]**",
+      "correct": true,
+      "citation_correct": true,
+      "abstained": false,
+      "error": null,
+      "prompt_tokens": 14484,
+      "completion_tokens": 42,
+      "latency_s": 17.9
+    },
+    {
+      "question_id": "T3",
+      "method": "v5_records",
+      "answer": "Theo khảo sát cấp trường, **học phí** là nguồn thu lớn nhất của các trường đại học công lập Việt Nam, chiếm **55% tổng nguồn thu năm 2017**. [PDF trang 65; trang in None]",
+      "correct": true,
+      "citation_correct": true,
+      "abstained": false,
+      "error": null,
+      "prompt_tokens": 11215,
+      "completion_tokens": 54,
+      "latency_s": 6.14
+    },
+    {
+      "question_id": "B1",
+      "method": "v5_records",
+      "answer": "Việt Nam có:\n\n- **Webometrics:** 0 trường\n- **QS:** 2 trường\n- **Times Higher Education:** 1 trường\n\n[PDF trang 46; trang in 32]",
+      "correct": false,
+      "citation_correct": true,
+      "abstained": false,
+      "error": null,
+      "prompt_tokens": 11717,
+      "completion_tokens": 48,
+      "latency_s": 6.01
+    },
+    {
+      "question_id": "B2",
+      "method": "v5_records",
+      "answer": "Pháp có **35 trường** trong top 1.000 của bảng xếp hạng QS. **[PDF trang 46; trang in 32]**",
+      "correct": true,
+      "citation_correct": true,
+      "abstained": false,
+      "error": null,
+      "prompt_tokens": 5733,
+      "completion_tokens": 38,
+      "latency_s": 4.22
+    },
+    {
+      "question_id": "B3",
+      "method": "v5_records",
+      "answer": "Anh quốc có **92 trường** trong top 1.000 của bảng xếp hạng Times Higher Education. [PDF trang 46; trang in 32]",
+      "correct": true,
+      "citation_correct": true,
+      "abstained": false,
+      "error": null,
+      "prompt_tokens": 11110,
+      "completion_tokens": 38,
+      "latency_s": 6.71
+    },
+    {
+      "question_id": "B4",
+      "method": "v5_records",
+      "answer": "Đức có **60 trường** trong top 1.000 của Bảng xếp hạng Webometrics. [PDF trang 46; trang in 32]",
+      "correct": true,
+      "citation_correct": true,
+      "abstained": false,
+      "error": null,
+      "prompt_tokens": 11698,
+      "completion_tokens": 39,
+      "latency_s": 9.89
+    },
+    {
+      "question_id": "B5",
+      "method": "v5_records",
+      "answer": "Nhật Bản có **51 trường** trong top 1.000 của Bảng xếp hạng QS. [PDF trang 46; trang in 32]",
+      "correct": false,
+      "citation_correct": true,
+      "abstained": false,
+      "error": null,
+      "prompt_tokens": 5675,
+      "completion_tokens": 71,
+      "latency_s": 11.44
+    },
+    {
+      "question_id": "B6",
+      "method": "v5_records",
+      "answer": "Trung Quốc có **63 trường** trong top 1.000 của Times Higher Education. [PDF trang 46; trang in 32]",
+      "correct": true,
+      "citation_correct": true,
+      "abstained": false,
+      "error": null,
+      "prompt_tokens": 5336,
+      "completion_tokens": 34,
+      "latency_s": 4.87
+    }
+  ],
+  "textonly_lexical": [
+    {
+      "question_id": "F1",
+      "method": "textonly_lexical",
+      "answer": "Việt Nam nổi lên như **một ngoại lệ: có kết quả giáo dục phổ thông khá tốt nhưng kết quả giáo dục đại học lại thấp hơn đáng kể so với các quốc gia trong khu vực và trên toàn cầu**. Điều này cho thấy Việt Nam chưa chuyển hóa tương xứng nền tảng giáo dục phổ thông và lợi thế của thế hệ trẻ thành số lượng người tốt nghiệp đại học. **[PDF trang 16; trang in 2]**",
+      "correct": true,
+      "citation_correct": true,
+      "abstained": false,
+      "error": null,
+      "prompt_tokens": 10855,
+      "completion_tokens": 207,
+      "latency_s": 75.15
+    },
+    {
+      "question_id": "F3",
+      "method": "textonly_lexical",
+      "answer": "Người tốt nghiệp **đại học trở lên có lợi thế về thu nhập**: năm 2016, thu nhập trung bình khoảng **92 triệu đồng/năm**, cao hơn **93% so với người tốt nghiệp trung học** và **47% so với người có bằng cao đẳng**. [PDF trang 47; trang in 33]\n\nNgoài ra, nhóm này cũng có lợi thế về việc làm: **88,1% tham gia lực lượng lao động**, và trong số người có việc làm, **trên 85% có công việc trả lương và hợp đồng lao động**. [PDF trang 47; trang in 33]",
+      "correct": false,
+      "citation_correct": false,
+      "abstained": false,
+      "error": null,
+      "prompt_tokens": 5013,
+      "completion_tokens": 263,
+      "latency_s": 8.94
+    }
+  ],
+  "multimodal_figure": [
+    {
+      "question_id": "F1",
+      "method": "multimodal_figure",
+      "answer": "Theo mô tả bên cạnh **Hình ES.1**, Việt Nam **nổi lên như một ngoại lệ** khi so sánh với các quốc gia trong khu vực và trên toàn cầu: dù có kết quả giáo dục phổ thông tương đối tốt, **kết quả giáo dục đại học lại thấp hơn đáng kể so với xu hướng chung**.\n\nVì vậy, Việt Nam cần đầu tư mạnh mẽ và sớm hơn vào hệ thống giáo dục đại học để nâng cao năng lực cạnh tranh quốc tế (**PDF trang 16; trang in 2**).",
+      "correct": true,
+      "citation_correct": true,
+      "abstained": false,
+      "error": null,
+      "prompt_tokens": 2159,
+      "completion_tokens": 356,
+      "latency_s": 23.77
+    },
+    {
+      "question_id": "F2",
+      "method": "multimodal_figure",
+      "answer": "Theo nội dung gắn với **Hình 3**, tổng tỉ lệ nhập học ở bậc giáo dục sau phổ thông của Việt Nam tăng từ **9% lên 28%** trong giai đoạn 2000–2016 (**trang 39**).",
+      "correct": true,
+      "citation_correct": true,
+      "abstained": false,
+      "error": null,
+      "prompt_tokens": 2345,
+      "completion_tokens": 61,
+      "latency_s": 16.25
+    },
+    {
+      "question_id": "F3",
+      "method": "multimodal_figure",
+      "answer": "Người tốt nghiệp **đại học trở lên có mức lương trung bình cao hơn** so với người chỉ có trình độ tiểu học/trung học cơ sở hoặc cao đẳng, ở cả nhóm **tất cả độ tuổi** và nhóm **25–35 tuổi**. [PDF trang 48; trang in 34]",
+      "correct": false,
+      "citation_correct": true,
+      "abstained": false,
+      "error": null,
+      "prompt_tokens": 1917,
+      "completion_tokens": 143,
+      "latency_s": 12.43
+    }
+  ]
+}

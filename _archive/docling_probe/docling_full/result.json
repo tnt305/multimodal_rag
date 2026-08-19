@@ -1,0 +1,9 @@
+{
+  "mode": "full_ocr",
+  "pdf": "data/higher_education_vietnam_vi.pdf",
+  "status": "ok",
+  "markdown_chars": 394106,
+  "tables": 33,
+  "pictures": 67,
+  "seconds": 191.07
+}

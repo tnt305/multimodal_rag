@@ -1,0 +1,15 @@
+# Core parsing/OCR
+pymupdf>=1.24
+pdfplumber>=0.11
+pytesseract>=0.3
+Pillow>=10
+
+
+# API QA
+openai>=1.50
+
+# Local multimodal embeddings (install compatible torch for your CUDA first)
+torch>=2.1
+transformers>=4.45
+sentence-transformers>=3.0
+numpy>=1.26

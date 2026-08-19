@@ -1,0 +1,225 @@
+{
+  "table": {
+    "detector_p_r_f1": {
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1": 0.857
+    },
+    "flagged_pages": [
+      16,
+      18,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      36,
+      42,
+      43,
+      44,
+      47,
+      48,
+      49,
+      56,
+      63,
+      79,
+      80,
+      84,
+      90,
+      94,
+      95,
+      97,
+      99,
+      101
+    ],
+    "cross_parser": {
+      "16": {
+        "rows_pdfplumber": 7,
+        "rows_pymupdf": 0,
+        "mismatch": true
+      },
+      "18": {
+        "rows_pdfplumber": 10,
+        "rows_pymupdf": 0,
+        "mismatch": true
+      },
+      "36": {
+        "rows_pdfplumber": 20,
+        "rows_pymupdf": 0,
+        "mismatch": true
+      },
+      "39": {
+        "rows_pdfplumber": 0,
+        "rows_pymupdf": 0,
+        "mismatch": false
+      },
+      "46": {
+        "rows_pdfplumber": 1,
+        "rows_pymupdf": 22,
+        "mismatch": true
+      },
+      "48": {
+        "rows_pdfplumber": 9,
+        "rows_pymupdf": 0,
+        "mismatch": true
+      },
+      "55": {
+        "rows_pdfplumber": 0,
+        "rows_pymupdf": 0,
+        "mismatch": false
+      },
+      "65": {
+        "rows_pdfplumber": 15,
+        "rows_pymupdf": 6,
+        "mismatch": true
+      }
+    }
+  },
+  "figure": {
+    "pipeline_figure_pages": [
+      6,
+      16,
+      18,
+      22,
+      36,
+      38,
+      39,
+      42,
+      44,
+      48,
+      49,
+      55,
+      61,
+      65,
+      72,
+      85,
+      99
+    ],
+    "reference_figure_pages": [
+      1,
+      6,
+      36,
+      38,
+      39,
+      42,
+      44,
+      48,
+      49,
+      55,
+      61,
+      65,
+      72,
+      85
+    ],
+    "missed_pages": [
+      1
+    ],
+    "missed_reasons": {
+      "1": "raster_image"
+    },
+    "coverage": 0.929,
+    "tp_fn": {
+      "tp": 13,
+      "fn": 1
+    }
+  },
+  "ocr": {
+    "pages": {
+      "16": {
+        "native_chars": 2943,
+        "ocr_chars": 2817,
+        "cer": 0.0265,
+        "text_coverage": 1.045
+      },
+      "18": {
+        "native_chars": 3304,
+        "ocr_chars": 3312,
+        "cer": 0.0324,
+        "text_coverage": 0.998
+      },
+      "36": {
+        "native_chars": 3056,
+        "ocr_chars": 2902,
+        "cer": 0.033,
+        "text_coverage": 1.053
+      },
+      "39": {
+        "native_chars": 1547,
+        "ocr_chars": 1607,
+        "cer": 0.0401,
+        "text_coverage": 0.963
+      },
+      "46": {
+        "native_chars": 2811,
+        "ocr_chars": 2800,
+        "cer": 0.0349,
+        "text_coverage": 1.004
+      },
+      "48": {
+        "native_chars": 2215,
+        "ocr_chars": 1838,
+        "cer": 0.0343,
+        "text_coverage": 1.205
+      },
+      "55": {
+        "native_chars": 2806,
+        "ocr_chars": 2570,
+        "cer": 0.0246,
+        "text_coverage": 1.092
+      },
+      "65": {
+        "native_chars": 2010,
+        "ocr_chars": 1974,
+        "cer": 0.0338,
+        "text_coverage": 1.018
+      }
+    }
+  },
+  "reading_order": {
+    "pages": {
+      "16": {
+        "words_pdfplumber": 651,
+        "words_pymupdf": 652,
+        "kendall_tau": 0.409
+      },
+      "18": {
+        "words_pdfplumber": 749,
+        "words_pymupdf": 749,
+        "kendall_tau": 0.248
+      },
+      "36": {
+        "words_pdfplumber": 679,
+        "words_pymupdf": 679,
+        "kendall_tau": 0.506
+      },
+      "39": {
+        "words_pdfplumber": 340,
+        "words_pymupdf": 340,
+        "kendall_tau": 0.423
+      },
+      "46": {
+        "words_pdfplumber": 586,
+        "words_pymupdf": 586,
+        "kendall_tau": 0.512
+      },
+      "48": {
+        "words_pdfplumber": 492,
+        "words_pymupdf": 422,
+        "kendall_tau": 0.302
+      },
+      "55": {
+        "words_pdfplumber": 672,
+        "words_pymupdf": 567,
+        "kendall_tau": 0.428
+      },
+      "65": {
+        "words_pdfplumber": 432,
+        "words_pymupdf": 432,
+        "kendall_tau": 0.289
+      }
+    },
+    "mean_tau": 0.39
+  }
+}

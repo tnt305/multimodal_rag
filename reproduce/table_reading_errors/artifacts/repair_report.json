@@ -1,0 +1,39 @@
+{
+  "pdf": "data/higher_education_vietnam_vi.pdf",
+  "physical_page": 46,
+  "printed_page": 32,
+  "baseline": {
+    "extractor": "pdfplumber.extract_tables",
+    "table_count": 1,
+    "rows_per_table": [
+      1
+    ],
+    "note": "Inspect baseline_pdfplumber.json; this is the intentionally fragile baseline."
+  },
+  "repaired": {
+    "row_count": 18,
+    "columns": [
+      "Quốc gia",
+      "Webometrics top 1.000",
+      "QS top 1.000",
+      "Times Higher Education top 1.000"
+    ],
+    "key_rows": {
+      "Pháp": [
+        40,
+        35,
+        32
+      ],
+      "Việt Nam": [
+        0,
+        2,
+        1
+      ]
+    },
+    "checks": {
+      "Pháp": true,
+      "Việt Nam": true
+    },
+    "markdown": "reproduce/table_reading_errors/artifacts/repaired_table.md"
+  }
+}

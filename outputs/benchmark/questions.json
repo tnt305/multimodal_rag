@@ -1,0 +1,74 @@
+[
+  {
+    "id": "T1",
+    "type": "text",
+    "gt_page": 18,
+    "expected": "chưa đến 10%"
+  },
+  {
+    "id": "T2",
+    "type": "text",
+    "gt_page": 55,
+    "expected": "hơn 600"
+  },
+  {
+    "id": "T3",
+    "type": "text",
+    "gt_page": 65,
+    "expected": "học phí"
+  },
+  {
+    "id": "B1",
+    "type": "table",
+    "gt_page": 46,
+    "expected": "0-2-1"
+  },
+  {
+    "id": "B2",
+    "type": "table",
+    "gt_page": 46,
+    "expected": "35"
+  },
+  {
+    "id": "B3",
+    "type": "table",
+    "gt_page": 46,
+    "expected": "92"
+  },
+  {
+    "id": "B4",
+    "type": "table",
+    "gt_page": 46,
+    "expected": "60"
+  },
+  {
+    "id": "B5",
+    "type": "table",
+    "gt_page": 46,
+    "expected": "44"
+  },
+  {
+    "id": "B6",
+    "type": "table",
+    "gt_page": 46,
+    "expected": "63"
+  },
+  {
+    "id": "F1",
+    "type": "figure",
+    "gt_page": 16,
+    "expected": "ngoại lệ"
+  },
+  {
+    "id": "F2",
+    "type": "figure",
+    "gt_page": 39,
+    "expected": "9% lên 28%"
+  },
+  {
+    "id": "F3",
+    "type": "figure",
+    "gt_page": 48,
+    "expected": "lợi thế rõ ràng về việc làm và thu nhập"
+  }
+]

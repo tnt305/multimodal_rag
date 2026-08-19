@@ -1,0 +1,28 @@
+# Environment variables & secrets
+.env
+*.env
+!.env.example
+
+# Python cache & build files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+build/
+dist/
+*.egg-info/
+
+# IDEs & System files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Logs & Reports
+*.log
+logs/
+report.md

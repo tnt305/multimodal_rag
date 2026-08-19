@@ -1,0 +1,42 @@
+{
+  "lexical": {
+    "n": 9,
+    "accuracy": 0.667,
+    "citation_accuracy": 0.889,
+    "abstain_rate": 0.111,
+    "avg_latency_s": 17.26,
+    "total_prompt_tokens": 66712,
+    "total_completion_tokens": 1832,
+    "errors": []
+  },
+  "v5_records": {
+    "n": 9,
+    "accuracy": 0.778,
+    "citation_accuracy": 1.0,
+    "abstain_rate": 0.0,
+    "avg_latency_s": 7.77,
+    "total_prompt_tokens": 81748,
+    "total_completion_tokens": 402,
+    "errors": []
+  },
+  "textonly_lexical": {
+    "n": 2,
+    "accuracy": 0.5,
+    "citation_accuracy": 0.5,
+    "abstain_rate": 0.0,
+    "avg_latency_s": 42.04,
+    "total_prompt_tokens": 15868,
+    "total_completion_tokens": 470,
+    "errors": []
+  },
+  "multimodal_figure": {
+    "n": 3,
+    "accuracy": 0.667,
+    "citation_accuracy": 1.0,
+    "abstain_rate": 0.0,
+    "avg_latency_s": 17.48,
+    "total_prompt_tokens": 6421,
+    "total_completion_tokens": 560,
+    "errors": []
+  }
+}
