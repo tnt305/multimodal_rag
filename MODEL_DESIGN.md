@@ -28,9 +28,9 @@ Triton GPU 3 chạy cả 2 model v5 text/image ở **float16** (`torch_dtype=tor
 |---|---|---|---|
 | Text embedding | `jina_v5_text` (jina-embeddings-v5-omni-nano) | Triton gateway `:8036` | Yes (EMBED_API_KEY) |
 | Image embedding | `jina_v5_image` (cùng model) | Triton gateway `:8036` | Yes (EMBED_API_KEY) |
-| Text embedding (alternative) | `BAAI/bge-m3` (`tinix-embedding-cosine`, 1024-d) | Remote embedding endpoint (`BGE3_API_URL`) | No |
-| Text answer | `openai/gpt-4o-mini` (hoặc model tùy chọn) | OpenRouter / OpenAI-compatible API | Yes |
-| Image-aware answer | `openai/gpt-4o-mini` (vision) | OpenRouter / OpenAI-compatible API | Yes |
+| Text embedding (alternative) | `BAAI/bge-m3` (1024-d) | Remote embedding endpoint (`BGE3_API_URL`) | No |
+| Text answer | `qwen3-vl-8b-instruct` | OpenRouter / OpenAI-compatible API | Yes |
+| Image-aware answer | `qwen3-vl-8b-instruct` (vision) | OpenRouter / OpenAI-compatible API | Yes |
 
 References: https://huggingface.co/jinaai/jina-embeddings-v5-omni-nano và https://huggingface.co/BAAI/bge-m3.
 

@@ -27,7 +27,7 @@ def _load_env_sh(path: Path) -> dict[str, str]:
 
 
 class EmbedderConfig(BaseModel):
-    """Nơi embed text/ảnh. v5 = gateway Triton GPU 3; bge3 = tinix remote."""
+    """Nơi embed text/ảnh. v5 = gateway Triton GPU 3; bge3 = remote."""
 
     api_url: str = "http://localhost:8036/v1"
     api_key: SecretStr = SecretStr("")
@@ -45,12 +45,12 @@ class EmbedderConfig(BaseModel):
 class QASettings(BaseModel):
     """Model trả lời (text + vision) và giá USD / 1M token để tính chi phí."""
 
-    text_model: str = "claude-opus-4.6"
-    vision_model: str = "claude-opus-4.6"
-    text_price_in: float = 15.0
-    text_price_out: float = 75.0
-    vision_price_in: float = 0.15
-    vision_price_out: float = 2.5
+    text_model: str = "qwen3-vl-8b-instruct"
+    vision_model: str = "qwen3-vl-8b-instruct"
+    text_price_in: float = 0.3
+    text_price_out: float = 0.9
+    vision_price_in: float = 0.3
+    vision_price_out: float = 0.9
     max_tokens: int = 900
     attempts: int = 3
 
@@ -60,33 +60,29 @@ class BenchmarkSettings(BaseModel):
 
     repo_root: Path = Path(__file__).resolve().parents[1]
     records: Path = Path("outputs/parsed/page_records.jsonl")
-    chunks: Path = Path("outputs/chunks/chunk_records.jsonl")
-    pdf: Path = Path("data/higher_education_vietnam_vi.pdf")
-    assets_dir: Path = Path("outputs/parsed/assets")
-    embed_v5_records: Path = Path("outputs/embeddings_v5.npz")
-    embed_v5_chunks: Path = Path("outputs/embeddings_v5_chunks.npz")
-    embed_v5_figures: Path = Path("outputs/embeddings_v5_figures.npz")
-    embed_bge3_records: Path = Path("outputs/embeddings_bge3_pages.npz")
-    embed_bge3_chunks: Path = Path("outputs/embeddings_bge3_chunks.npz")
-    query_images: list[str] = ["data/p16.png", "data/p39.png"]
-    out_dir: Path = Path("outputs/benchmark")
+    questions: Path = Path("data/questions_12.json")
+    ground_truth: Path = Path("data/ground_truth.json")
+    output_dir: Path = Path("outputs/benchmark")
 
-    def resolve(self) -> "BenchmarkSettings":
-        """Chuyển path tương đối thành absolute theo repo_root."""
-        for field in ("records", "chunks", "pdf", "assets_dir",
-                      "embed_v5_records", "embed_v5_chunks", "embed_v5_figures",
-                      "embed_bge3_records", "embed_bge3_chunks", "out_dir"):
-            raw = getattr(self, field)
-            if not raw.is_absolute():
-                setattr(self, field, self.repo_root / raw)
-        self.query_images = [
-            str(p) if Path(p).is_absolute() else str(self.repo_root / p)
-            for p in self.query_images
-        ]
-        return self
+    def resolve(self) -> BenchmarkSettings:
+        repo_root = Path(__file__).resolve().parents[1]
+        return BenchmarkSettings(
+            questions=(repo_root / self.questions).resolve(),
+            ground_truth=(repo_root / self.ground_truth).resolve(),
+            output_dir=(repo_root / self.output_dir).resolve(),
+        )
 
 
-def build_settings() -> Settings:
+class Settings(BaseModel):
+    """Settings tổng — đối tượng duy nhất truyền vào benchmark services."""
+
+    embedder: EmbedderConfig = EmbedderConfig()
+    qa: QASettings = QASettings()
+    benchmark: BenchmarkSettings = BenchmarkSettings()
+
+
+def load_settings() -> Settings:
+    """Nạp settings từ env và fallback reproduce/env.sh."""
     try:
         from dotenv import load_dotenv
         load_dotenv(Path(__file__).resolve().parents[1] / ".env")
@@ -100,8 +96,8 @@ def build_settings() -> Settings:
     bge3_model = os.getenv("BGE3_MODEL", env_sh.get("BGE3_MODEL", "BAAI/bge-m3"))
     openai_key = os.getenv("OPENAI_API_KEY", env_sh.get("OPENAI_API_KEY", ""))
     openai_base = os.getenv("OPENAI_API_BASE", env_sh.get("OPENAI_API_BASE", "https://openrouter.ai/api/v1"))
-    qa_model = os.getenv("QA_MODEL", env_sh.get("QA_MODEL", "claude-opus-4.6"))
-    vision_model = os.getenv("VISION_MODEL", env_sh.get("VISION_MODEL", "claude-opus-4.6"))
+    qa_model = os.getenv("QA_MODEL", env_sh.get("QA_MODEL", "qwen3-vl-8b-instruct"))
+    vision_model = os.getenv("VISION_MODEL", env_sh.get("VISION_MODEL", "qwen3-vl-8b-instruct"))
 
     if openai_key:
         os.environ.setdefault("OPENAI_API_KEY", openai_key)
@@ -114,11 +110,3 @@ def build_settings() -> Settings:
     )
     settings.benchmark = settings.benchmark.resolve()
     return settings
-
-
-class Settings(BaseModel):
-    """Settings tổng — đối tượng duy nhất truyền vào benchmark services."""
-
-    embedder: EmbedderConfig = EmbedderConfig()
-    qa: QASettings = QASettings()
-    benchmark: BenchmarkSettings = BenchmarkSettings()

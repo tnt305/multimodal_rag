@@ -85,7 +85,7 @@ def main() -> None:
     args = ap.parse_args()
 
     if not args.model:
-        args.model = os.getenv("VISION_MODEL", "openai/gpt-4o-mini") if args.vision else os.getenv("QA_MODEL", "openai/gpt-4o-mini")
+        args.model = os.getenv("VISION_MODEL", "qwen3-vl-8b-instruct") if args.vision else os.getenv("QA_MODEL", "qwen3-vl-8b-instruct")
 
     records = load_records(args.records)
     data = np.load(args.embeddings)

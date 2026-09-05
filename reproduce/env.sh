@@ -17,8 +17,8 @@ export PYTHON="${PYTHON:-$(which python3)}"
 # Answer model (OpenRouter / OpenAI-compatible API)
 export OPENAI_API_KEY="${OPENAI_API_KEY:-}"
 export OPENAI_API_BASE="${OPENAI_API_BASE:-https://openrouter.ai/api/v1}"
-export QA_MODEL="${QA_MODEL:-claude-opus-4.6}"
-export VISION_MODEL="${VISION_MODEL:-claude-opus-4.6}"
+export QA_MODEL="${QA_MODEL:-qwen3-vl-8b-instruct}"
+export VISION_MODEL="${VISION_MODEL:-qwen3-vl-8b-instruct}"
 
 # Embedding Jina v5 omni nano qua embedding-gateway (Triton)
 export EMBED_API_KEY="${EMBED_API_KEY:-}"
