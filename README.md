@@ -7,11 +7,13 @@ Pipeline QA đa phương thức cho PDF học thuật tiếng Việt (110 trang,
 Tạo tệp `.env` từ mẫu `.env.example` và điền `OPENAI_API_KEY` (từ OpenRouter hoặc provider OpenAI-compatible):
 
 ```bash
+git clone https://github.com/tnt305/multimodal_rag.git
+cd multimodal_rag
+pip install -r requirements.txt
 cp .env.example .env
 # Chỉnh sửa .env: đặt OPENAI_API_KEY=sk-or-v1-..., OPENAI_API_BASE, EMBED_API_URL, BGE3_API_URL
 
 source reproduce/env.sh     # tự động load .env, thiết lập $PYTHON, API keys, URLs
-# $PYTHON = /home/thiendc/projects/.conda/bin/python
 sudo apt-get install -y tesseract-ocr tesseract-ocr-vie   # cho OCR audit
 ```
 
@@ -21,10 +23,10 @@ sudo apt-get install -y tesseract-ocr tesseract-ocr-vie   # cho OCR audit
 Mặc định: `http://localhost:8036/v1` (Model `jina_v5_text`, `jina_v5_image`).
 
 ### 2.2. BGE-M3 remote — Cấu hình qua `BGE3_API_URL`
-Mặc định: `http://localhost:8080/v1/embeddings` (Model `tinix-embedding-cosine`).
+Mặc định: `http://localhost:8080/v1/embeddings` (Model `BAAI/bge-m3`).
 
 ### 2.3. QA LLM API (OpenRouter / OpenAI-compatible) — Cấu hình qua `OPENAI_API_BASE`
-Mặc định: `https://openrouter.ai/api/v1` với `QA_MODEL` / `VISION_MODEL` (`openai/gpt-4o-mini`, `anthropic/claude-3.5-sonnet`, v.v.).
+Mặc định: `https://openrouter.ai/api/v1` với `QA_MODEL` / `VISION_MODEL` (`claude-opus-4.6`, `openai/gpt-4o-mini`, `qwen/qwen-2.5-vl-72b-instruct`, v.v.).
 
 ```bash
 source reproduce/env.sh

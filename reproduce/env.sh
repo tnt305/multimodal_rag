@@ -11,14 +11,14 @@ if [ -f "$ROOT/.env" ]; then
     set +a
 fi
 
-# Python trên máy này
-export PYTHON="${PYTHON:-/home/thiendc/projects/.conda/bin/python}"
+# Python trên máy (tự động phát hiện python3 hoặc lấy từ biến môi trường)
+export PYTHON="${PYTHON:-$(which python3)}"
 
-# Answer model (OpenRouter API)
+# Answer model (OpenRouter / OpenAI-compatible API)
 export OPENAI_API_KEY="${OPENAI_API_KEY:-}"
 export OPENAI_API_BASE="${OPENAI_API_BASE:-https://openrouter.ai/api/v1}"
-export QA_MODEL="${QA_MODEL:-openai/gpt-4o-mini}"
-export VISION_MODEL="${VISION_MODEL:-openai/gpt-4o-mini}"
+export QA_MODEL="${QA_MODEL:-claude-opus-4.6}"
+export VISION_MODEL="${VISION_MODEL:-claude-opus-4.6}"
 
 # Embedding Jina v5 omni nano qua embedding-gateway (Triton)
 export EMBED_API_KEY="${EMBED_API_KEY:-}"
@@ -26,4 +26,4 @@ export EMBED_API_URL="${EMBED_API_URL:-http://localhost:8036/v1}"
 
 # BGE-M3 Remote Embedding Gateway
 export BGE3_API_URL="${BGE3_API_URL:-http://localhost:8080/v1/embeddings}"
-export BGE3_MODEL="${BGE3_MODEL:-tinix-embedding-cosine}"
+export BGE3_MODEL="${BGE3_MODEL:-BAAI/bge-m3}"

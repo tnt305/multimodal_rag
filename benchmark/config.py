@@ -36,7 +36,7 @@ class EmbedderConfig(BaseModel):
     query_side: str = "query"
     document_side: str = "document"
     bge3_url: str = ""
-    bge3_model: str = "tinix-embedding-cosine"
+    bge3_model: str = "BAAI/bge-m3"
     bge3_query_prefix: str = "Represent this sentence for searching relevant passages: "
     batch_size: int = 16
     timeout_s: int = 300
@@ -97,11 +97,11 @@ def build_settings() -> Settings:
     key = os.getenv("EMBED_API_KEY", env_sh.get("EMBED_API_KEY", ""))
     url = os.getenv("EMBED_API_URL", env_sh.get("EMBED_API_URL", "http://localhost:8036/v1"))
     bge3_url = os.getenv("BGE3_API_URL", env_sh.get("BGE3_API_URL", ""))
-    bge3_model = os.getenv("BGE3_MODEL", env_sh.get("BGE3_MODEL", "tinix-embedding-cosine"))
+    bge3_model = os.getenv("BGE3_MODEL", env_sh.get("BGE3_MODEL", "BAAI/bge-m3"))
     openai_key = os.getenv("OPENAI_API_KEY", env_sh.get("OPENAI_API_KEY", ""))
     openai_base = os.getenv("OPENAI_API_BASE", env_sh.get("OPENAI_API_BASE", "https://openrouter.ai/api/v1"))
-    qa_model = os.getenv("QA_MODEL", env_sh.get("QA_MODEL", "openai/gpt-4o-mini"))
-    vision_model = os.getenv("VISION_MODEL", env_sh.get("VISION_MODEL", "openai/gpt-4o-mini"))
+    qa_model = os.getenv("QA_MODEL", env_sh.get("QA_MODEL", "claude-opus-4.6"))
+    vision_model = os.getenv("VISION_MODEL", env_sh.get("VISION_MODEL", "claude-opus-4.6"))
 
     if openai_key:
         os.environ.setdefault("OPENAI_API_KEY", openai_key)
