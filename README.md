@@ -26,7 +26,7 @@ Mặc định: `http://localhost:8036/v1` (Model `jina_v5_text`, `jina_v5_image`
 Mặc định: `http://localhost:8080/v1/embeddings` (Model `BAAI/bge-m3`).
 
 ### 2.3. QA LLM API (OpenRouter / OpenAI-compatible)  -  Cấu hình qua `OPENAI_API_BASE`
-Mặc định: `https://openrouter.ai/api/v1` với `QA_MODEL` / `VISION_MODEL` (`qwen/qwen3-vl-8b-instruct`, `openai/gpt-4o-mini`, v.v.).
+Mặc định: `https://openrouter.ai/api/v1` với `QA_MODEL` / `VISION_MODEL` (`qwen/qwen3-vl-8b-instruct`).
 
 ```bash
 source reproduce/env.sh
