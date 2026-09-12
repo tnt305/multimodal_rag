@@ -1,4 +1,4 @@
-# Vietnamese PDF QA — RAG đa phương thức + Benchmark
+# Vietnamese PDF QA  -  RAG đa phương thức + Benchmark
 
 Pipeline QA đa phương thức cho PDF học thuật tiếng Việt (110 trang, Giáo dục đại học Việt Nam): parse (PyMuPDF4LLM + pdfplumber) → bảng→Markdown → hình → embedding (jina v5 / BGE-M3) → retrieval → QA text/vision kèm trích dẫn trang → **benchmark có thước đo** (retrieval, QA accuracy/citation, audit parse, chi phí, latency). Kết quả tổng hợp: [`report.md`](report.md).
 
@@ -19,14 +19,14 @@ sudo apt-get install -y tesseract-ocr tesseract-ocr-vie   # cho OCR audit
 
 ## 2. Các API dùng trong dự án
 
-### 2.1. Embedding gateway (Triton GPU) — Cấu hình qua `EMBED_API_URL`
+### 2.1. Embedding gateway (Triton GPU)  -  Cấu hình qua `EMBED_API_URL`
 Mặc định: `http://localhost:8036/v1` (Model `jina_v5_text`, `jina_v5_image`).
 
-### 2.2. BGE-M3 remote — Cấu hình qua `BGE3_API_URL`
+### 2.2. BGE-M3 remote  -  Cấu hình qua `BGE3_API_URL`
 Mặc định: `http://localhost:8080/v1/embeddings` (Model `BAAI/bge-m3`).
 
-### 2.3. QA LLM API (OpenRouter / OpenAI-compatible) — Cấu hình qua `OPENAI_API_BASE`
-Mặc định: `https://openrouter.ai/api/v1` với `QA_MODEL` / `VISION_MODEL` (`claude-opus-4.6`, `openai/gpt-4o-mini`, `qwen/qwen-2.5-vl-72b-instruct`, v.v.).
+### 2.3. QA LLM API (OpenRouter / OpenAI-compatible)  -  Cấu hình qua `OPENAI_API_BASE`
+Mặc định: `https://openrouter.ai/api/v1` với `QA_MODEL` / `VISION_MODEL` (`qwen/qwen3-vl-8b-instruct`, `openai/gpt-4o-mini`, v.v.).
 
 ```bash
 source reproduce/env.sh
@@ -64,10 +64,10 @@ Câu hỏi ──► ① embed side=query (jina_v5_text, ~ms)
 2. **Embed** (`src/embed_jina.py --records-embed --api`): mỗi record → `text + tables_markdown`, **side=`document`** → gateway Triton → `embeddings_v5.npz` + `record_ids` json. Chunks (mức dòng bảng/đoạn văn) và figures (17 asset, vision tower) tương tự → `embeddings_v5_chunks.npz`, `embeddings_v5_figures.npz`.
 
 ### Inference Time
-1. **Embed query**: `ask.py:39` — `JinaV5Api.text([question], side="query")` (prefix `Query:` tự thêm trong Triton).
-2. **Retrieval**: `ask.py:40-41` — `scores = vectors @ query`, `argsort` lấy top-k records.
-3. **Build context**: `ask.py:45-52` — mỗi hit thành `[PDF trang N; trang in M]` + text.
-4. **QA**: text-only → `chat_text` (claude-opus-4.6); `--vision` → `chat_vision` gửi ảnh asset của các hit (base64) + context.
+1. **Embed query**: `ask.py:39`  -  `JinaV5Api.text([question], side="query")` (prefix `Query:` tự thêm trong Triton).
+2. **Retrieval**: `ask.py:40-41`  -  `scores = vectors @ query`, `argsort` lấy top-k records.
+3. **Build context**: `ask.py:45-52`  -  mỗi hit thành `[PDF trang N; trang in M]` + text.
+4. **QA**: text-only → `chat_text` (qwen/qwen3-vl-8b-instruct); `--vision` → `chat_vision` gửi ảnh asset của các hit (base64) + context.
 5. **Trả về**: JSON gồm `question`, `method`, `retrieved` (id/page/printed_page/score), `answer`.
 
 ## 4. Luồng OFFLINE INDEXING (1 lệnh)
@@ -98,7 +98,7 @@ $PYTHON src/index.py --pdf data/higher_education_vietnam_vi.pdf \
 
 ```bash
 source reproduce/env.sh
-# Text-only: jina v5 (side=query) → cosine top-4 → claude-opus-4.6 kèm trích dẫn
+# Text-only: jina v5 (side=query) → cosine top-4 → qwen/qwen3-vl-8b-instruct kèm trích dẫn
 $PYTHON src/query.py --records outputs/parsed/page_records.jsonl \
   --embeddings outputs/embeddings_v5.npz \
   --question 'Pháp có bao nhiêu trường trong top 1.000 của QS?'
@@ -126,7 +126,7 @@ $PYTHON src/parse_pdf.py data/higher_education_vietnam_vi.pdf --out outputs/pars
 
 Tạo `outputs/parsed/page_records.jsonl` (110 trang: text, `tables_markdown`, `embedded_images`, `rendered_page_asset`), `stats.json` (ghi `table_fallback_pages`), `assets/page_*_figure_page.png` (17 figure).
 
-**Fix đọc bảng** (`table_fallback_pages = [40, 46, 62, 64]`): khi `pdfplumber.extract_tables()` chỉ trả header (bảng vỡ), parser fallback sang native text — mỗi dòng `label + 2+ ô số` thành một hàng; header lấy từ grid nếu khớp, loại header scramble (trang 62), merge 2 hàng grid (trang 40). Reproduce lỗi gốc: `bash reproduce/table_reading_errors/run.sh`.
+**Fix đọc bảng** (`table_fallback_pages = [40, 46, 62, 64]`): khi `pdfplumber.extract_tables()` chỉ trả header (bảng vỡ), parser fallback sang native text  -  mỗi dòng `label + 2+ ô số` thành một hàng; header lấy từ grid nếu khớp, loại header scramble (trang 62), merge 2 hàng grid (trang 40). Reproduce lỗi gốc: `bash reproduce/table_reading_errors/run.sh`.
 
 ## 7. Benchmark
 
@@ -138,7 +138,7 @@ $PYTHON -m unittest benchmark.tests.test_benchmark   # 9 smoke tests offline
 
 ### Đánh giá cái gì?
 
-**Retrieval** — 12 câu hỏi (3 text T1–T3, 6 bảng B1–B6, 3 hình F1–F3) có ground-truth trang + số liệu. Mỗi câu được embed (side=query) rồi cosine với từng corpus, đo recall@1/5/10 + MRR:
+**Retrieval**  -  12 câu hỏi (3 text T1–T3, 6 bảng B1–B6, 3 hình F1–F3) có ground-truth trang + số liệu. Mỗi câu được embed (side=query) rồi cosine với từng corpus, đo recall@1/5/10 + MRR:
 
 | Phương pháp | Corpus | Model |
 |---|---|---|
@@ -147,16 +147,16 @@ $PYTHON -m unittest benchmark.tests.test_benchmark   # 9 smoke tests offline
 | bge3_records / bge3_chunks | `embeddings_bge3_{pages,chunks}.npz` | BAAI/bge-m3 (1024-d) |
 | v5_figures | 17 figure assets | jina v5 vision tower (ảnh→ảnh) |
 
-**QA** — context từ top-3 hits → model trả lời, đo **accuracy** (khớp giá trị GT), **citation accuracy** (trích đúng trang), **abstain rate**:
+**QA**  -  context từ top-3 hits → model trả lời, đo **accuracy** (khớp giá trị GT), **citation accuracy** (trích đúng trang), **abstain rate**:
 
 | Phương pháp | Câu | Model |
 |---|---|---|
-| textonly_lexical / textonly_v5 | text + bảng | claude-opus-4.6 (text) |
-| multimodal_figure | hình (ảnh crop query + caption + đoạn lân cận) | claude-opus-4.6 (vision) |
+| textonly_lexical / textonly_v5 | text + bảng | qwen/qwen3-vl-8b-instruct (text) |
+| multimodal_figure | hình (ảnh crop query + caption + đoạn lân cận) | qwen/qwen3-vl-8b-instruct (vision) |
 
-**Audit parse** — `audits.json`: bảng (detector P/R/F1 + cross-parser pdfplumber vs pymupdf), hình (coverage vs reference caption/raster), reading order (Kendall τ giữa 2 parser theo word), OCR (CER giữa OCR vs text layer).
+**Audit parse**  -  `audits.json`: bảng (detector P/R/F1 + cross-parser pdfplumber vs pymupdf), hình (coverage vs reference caption/raster), reading order (Kendall τ giữa 2 parser theo word), OCR (CER giữa OCR vs text layer).
 
-**Cost & latency** — `cost.json` ($/1.000 câu hỏi theo token×giá model text/vision), `latency.json` (breakdown embed/retrieval/QA, p50/p95).
+**Cost & latency**  -  `cost.json` ($/1.000 câu hỏi theo token×giá model text/vision), `latency.json` (breakdown embed/retrieval/QA, p50/p95).
 
 ### Outputs (`outputs/benchmark/`)
 
@@ -168,7 +168,7 @@ $PYTHON -m unittest benchmark.tests.test_benchmark   # 9 smoke tests offline
 | `cost.json`, `latency.json` | chi phí + tốc độ |
 | `questions.json` | bộ câu hỏi benchmark |
 
-Kết quả hiện tại (tóm tắt — chi tiết `report.md`): v5 **12/12 r@1** page & chunk; lexical 10/12; bge3 chunks 10/12; QA v5 acc 0.78 + citation 100% câu bảng; lỗi còn lại là LLM trích nhầm cột bảng; multimodal cần thiết cho câu hỏi hình (F2/F3 không trả lời được text-only); OCR CER 3.2%; text-only ~$130/1k câu, multimodal figure ~$14/1k (claude-vision).
+Kết quả hiện tại (tóm tắt  -  chi tiết `report.md`): v5 **12/12 r@1** page & chunk; lexical 10/12; bge3 chunks 10/12; QA v5 acc 0.67 + citation 100% câu bảng; multimodal figure acc 0.67 với Vision LLM trên toàn bộ F1–F3; OCR CER 3.2%; chi phí QA v5 records ~$0.60/1k câu, multimodal figure ~$0.39/1k câu (`qwen/qwen3-vl-8b-instruct`).
 
 ## 8. Các failure mode cần phân biệt
 
@@ -176,7 +176,7 @@ Kết quả hiện tại (tóm tắt — chi tiết `report.md`): v5 **12/12 r@1
 |---|---|
 | `embed_jina.py` encode lỗi | local mode segfault → dùng `--api` |
 | Gateway 404/timeout | chưa load model trong Triton (`/v2/repository/models/jina_v5_text/load`) hoặc gateway chết (xem `gateway_run.log`) |
-| QA trả lỗi hoặc chuỗi rác | LLM API flaky — retry đã built-in, kiểm tra `OPENAI_API_KEY` trong `.env` |
+| QA trả lỗi hoặc chuỗi rác | LLM API flaky  -  retry đã built-in, kiểm tra `OPENAI_API_KEY` trong `.env` |
 | BGE-M3 top-1 tụt | quên prefix `Represent this sentence...` cho query |
 | Retrieval ảnh sai trang | cross-modal ảnh→text yếu; phải ảnh→ảnh rồi map trang |
 | `02_offline_pipeline.sh` lỗi | dependency/parser, không phải API key |
@@ -190,7 +190,7 @@ Kết quả hiện tại (tóm tắt — chi tiết `report.md`): v5 **12/12 r@1
 | `src/query.py` | **INFERENCE** orchestrator: embed query → retrieval → QA (1 lệnh) |
 | `src/parse_pdf.py` | Parse metadata, text, bảng (fix fallback), hình, OCR |
 | `src/chunk_records.py` | Chunk records → mức dòng bảng + mức trang |
-| `src/embed_jina.py` | Embed v5 — local (`JinaV5`) hoặc gateway Triton (`JinaV5Api`) |
+| `src/embed_jina.py` | Embed v5  -  local (`JinaV5`) hoặc gateway Triton (`JinaV5Api`) |
 | `src/embed_bge3.py` | Embed BGE-M3 (remote tinix) |
 | `src/api_client.py` | Chat text/vision + retry client cho OpenRouter / OpenAI API |
 | `src/ask.py` | CLI cũ (giữ tương thích; dùng `src/query.py` mới) |
@@ -201,7 +201,7 @@ Kết quả hiện tại (tóm tắt — chi tiết `report.md`): v5 **12/12 r@1
 | `report.md` | Báo cáo kết quả + debug guide |
 | `_archive/` | Docling probe + bản parse cũ (không nằm trong pipeline) |
 | `reproduce/` | Script tái lập từ đầu |
-| `data/` | PDF + ảnh query (`p16.png`, `p39.png`) |
+| `data/` | PDF + ảnh query (`p16.png`, `p39.png`, `p48.png`) |
 
 ## References
 

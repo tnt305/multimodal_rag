@@ -55,10 +55,10 @@ _RAW: list[tuple[str, str, str, int, str, str]] = [
      39, "9% lên 28%", "Hình 3, crop data/p39.png"),
     ("F3", "figure",
      "Hình 8 cho thấy người tốt nghiệp đại học trở lên có lợi thế gì so với người có trình độ học vấn thấp hơn?",
-     48, "lợi thế rõ ràng về việc làm và thu nhập", "Hình 8"),
+     48, "lợi thế rõ ràng về việc làm và thu nhập", "Hình 8, crop data/p48.png"),
 ]
 
-_QUERY_IMAGES = {"F1": "data/p16.png", "F2": "data/p39.png"}
+_QUERY_IMAGES = {"F1": "data/p16.png", "F2": "data/p39.png", "F3": "data/p48.png"}
 
 
 def build_questions(settings: Settings) -> list[Question]:

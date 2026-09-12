@@ -1,26 +1,26 @@
 {
   "lexical": {
-    "cost_per_1000_questions": 126.45,
-    "total_cost": 1.1381,
-    "latency_p50_s": 17.7,
-    "latency_p95_s": 26.84
+    "cost_per_1000_questions": 1.33,
+    "total_cost": 0.012,
+    "latency_p50_s": 1.54,
+    "latency_p95_s": 4.91
   },
   "v5_records": {
-    "cost_per_1000_questions": 139.6,
-    "total_cost": 1.2564,
-    "latency_p50_s": 6.14,
-    "latency_p95_s": 11.44
+    "cost_per_1000_questions": 0.6,
+    "total_cost": 0.0054,
+    "latency_p50_s": 0.97,
+    "latency_p95_s": 2.29
   },
   "textonly_lexical": {
-    "cost_per_1000_questions": 136.64,
-    "total_cost": 0.2733,
-    "latency_p50_s": 42.04,
-    "latency_p95_s": 75.15
+    "cost_per_1000_questions": 1.21,
+    "total_cost": 0.0024,
+    "latency_p50_s": 2.19,
+    "latency_p95_s": 2.5
   },
   "multimodal_figure": {
-    "cost_per_1000_questions": 13.73,
-    "total_cost": 0.0412,
-    "latency_p50_s": 16.25,
-    "latency_p95_s": 23.77
+    "cost_per_1000_questions": 0.39,
+    "total_cost": 0.0012,
+    "latency_p50_s": 2.13,
+    "latency_p95_s": 2.92
   }
 }

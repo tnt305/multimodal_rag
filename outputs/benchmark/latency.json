@@ -1,7 +1,7 @@
 {
   "n_queries": 12,
-  "embed_query_ms": 0.5,
-  "retrieve_ms": 0.5,
-  "qa_ms": 30198.5,
-  "total_ms": 30199.5
+  "embed_query_ms": 0.0,
+  "retrieve_ms": 0.0,
+  "qa_ms": 3972.2,
+  "total_ms": 3972.2
 }

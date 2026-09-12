@@ -1,42 +1,46 @@
 {
+  "provider": "openrouter",
+  "model": "qwen/qwen3-vl-8b-instruct",
+  "temperature": 0,
+  "commit": "b392b71",
   "lexical": {
     "n": 9,
-    "accuracy": 0.667,
+    "accuracy": 0.556,
     "citation_accuracy": 0.889,
     "abstain_rate": 0.111,
-    "avg_latency_s": 17.26,
-    "total_prompt_tokens": 66712,
-    "total_completion_tokens": 1832,
+    "avg_latency_s": 2.51,
+    "total_prompt_tokens": 36881,
+    "total_completion_tokens": 1014,
     "errors": []
   },
   "v5_records": {
     "n": 9,
-    "accuracy": 0.778,
+    "accuracy": 0.667,
     "citation_accuracy": 1.0,
     "abstain_rate": 0.0,
-    "avg_latency_s": 7.77,
-    "total_prompt_tokens": 81748,
-    "total_completion_tokens": 402,
+    "avg_latency_s": 1.49,
+    "total_prompt_tokens": 15326,
+    "total_completion_tokens": 876,
     "errors": []
   },
   "textonly_lexical": {
     "n": 2,
-    "accuracy": 0.5,
+    "accuracy": 1.0,
     "citation_accuracy": 0.5,
     "abstain_rate": 0.0,
-    "avg_latency_s": 42.04,
-    "total_prompt_tokens": 15868,
-    "total_completion_tokens": 470,
+    "avg_latency_s": 2.19,
+    "total_prompt_tokens": 6693,
+    "total_completion_tokens": 460,
     "errors": []
   },
   "multimodal_figure": {
     "n": 3,
     "accuracy": 0.667,
-    "citation_accuracy": 1.0,
+    "citation_accuracy": 0.333,
     "abstain_rate": 0.0,
-    "avg_latency_s": 17.48,
-    "total_prompt_tokens": 6421,
-    "total_completion_tokens": 560,
+    "avg_latency_s": 2.18,
+    "total_prompt_tokens": 1840,
+    "total_completion_tokens": 699,
     "errors": []
   }
 }

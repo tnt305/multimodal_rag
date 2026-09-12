@@ -45,8 +45,8 @@ class EmbedderConfig(BaseModel):
 class QASettings(BaseModel):
     """Model trả lời (text + vision) và giá USD / 1M token để tính chi phí."""
 
-    text_model: str = "qwen3-vl-8b-instruct"
-    vision_model: str = "qwen3-vl-8b-instruct"
+    text_model: str = "qwen/qwen3-vl-8b-instruct"
+    vision_model: str = "qwen/qwen3-vl-8b-instruct"
     text_price_in: float = 0.3
     text_price_out: float = 0.9
     vision_price_in: float = 0.3
@@ -60,17 +60,35 @@ class BenchmarkSettings(BaseModel):
 
     repo_root: Path = Path(__file__).resolve().parents[1]
     records: Path = Path("outputs/parsed/page_records.jsonl")
+    chunks: Path = Path("outputs/chunks/chunk_records.jsonl")
+    pdf: Path = Path("data/higher_education_vietnam_vi.pdf")
+    assets_dir: Path = Path("outputs/parsed/assets")
+    embed_v5_records: Path = Path("outputs/embeddings_v5.npz")
+    embed_v5_chunks: Path = Path("outputs/embeddings_v5_chunks.npz")
+    embed_v5_figures: Path = Path("outputs/embeddings_v5_figures.npz")
+    embed_bge3_records: Path = Path("outputs/embeddings_bge3_pages.npz")
+    embed_bge3_chunks: Path = Path("outputs/embeddings_bge3_chunks.npz")
+    query_images: list[str] = ["data/p16.png", "data/p39.png", "data/p48.png"]
+    out_dir: Path = Path("outputs/benchmark")
     questions: Path = Path("data/questions_12.json")
     ground_truth: Path = Path("data/ground_truth.json")
-    output_dir: Path = Path("outputs/benchmark")
 
-    def resolve(self) -> BenchmarkSettings:
-        repo_root = Path(__file__).resolve().parents[1]
-        return BenchmarkSettings(
-            questions=(repo_root / self.questions).resolve(),
-            ground_truth=(repo_root / self.ground_truth).resolve(),
-            output_dir=(repo_root / self.output_dir).resolve(),
-        )
+    def resolve(self) -> "BenchmarkSettings":
+        """Chuyển path tương đối thành absolute theo repo_root."""
+        for field in (
+            "records", "chunks", "pdf", "assets_dir",
+            "embed_v5_records", "embed_v5_chunks", "embed_v5_figures",
+            "embed_bge3_records", "embed_bge3_chunks", "out_dir",
+            "questions", "ground_truth",
+        ):
+            raw = getattr(self, field, None)
+            if raw and not raw.is_absolute():
+                setattr(self, field, self.repo_root / raw)
+        self.query_images = [
+            str(p) if Path(p).is_absolute() else str(self.repo_root / p)
+            for p in self.query_images
+        ]
+        return self
 
 
 class Settings(BaseModel):
@@ -96,8 +114,8 @@ def load_settings() -> Settings:
     bge3_model = os.getenv("BGE3_MODEL", env_sh.get("BGE3_MODEL", "BAAI/bge-m3"))
     openai_key = os.getenv("OPENAI_API_KEY", env_sh.get("OPENAI_API_KEY", ""))
     openai_base = os.getenv("OPENAI_API_BASE", env_sh.get("OPENAI_API_BASE", "https://openrouter.ai/api/v1"))
-    qa_model = os.getenv("QA_MODEL", env_sh.get("QA_MODEL", "qwen3-vl-8b-instruct"))
-    vision_model = os.getenv("VISION_MODEL", env_sh.get("VISION_MODEL", "qwen3-vl-8b-instruct"))
+    qa_model = os.getenv("QA_MODEL", env_sh.get("QA_MODEL", "qwen/qwen3-vl-8b-instruct"))
+    vision_model = os.getenv("VISION_MODEL", env_sh.get("VISION_MODEL", "qwen/qwen3-vl-8b-instruct"))
 
     if openai_key:
         os.environ.setdefault("OPENAI_API_KEY", openai_key)
@@ -110,3 +128,6 @@ def load_settings() -> Settings:
     )
     settings.benchmark = settings.benchmark.resolve()
     return settings
+
+
+build_settings = load_settings
